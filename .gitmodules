@@ -1,0 +1,3 @@
+[submodule "rmlibf_godot"]
+	path = rmlibf_godot
+	url = https://github.com/hakansabol/rmlibf_godot
