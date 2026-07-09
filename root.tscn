@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b51s202dg0j17"]
+
+[ext_resource type="Texture2D" uid="uid://knpvax47befa" path="res://sprites/door_postproc.png" id="1_pq8q7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho56"]
+metallic_specular = 0.0
+
+[node name="Node" type="Node" unique_id=1559354412]
+
+[node name="Node3D" type="Node3D" parent="." unique_id=2048282469]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1829686932]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D" unique_id=752782246]
+transform = Transform3D(2.7635, 0, 0, 0, 1, 0, 0, 0, 10.573031, -0.09412992, -1.6317849, -2.1656914)
+size = Vector3(14.711975, 1, 13.251587)
+material = SubResource("StandardMaterial3D_vho56")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D" unique_id=556415296]
+transform = Transform3D(1, 0, 0, 0, -0.9544025, 0.29852292, 0, -0.29852292, -0.9544025, 0, 3.7224102, -21.509653)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node3D" unique_id=1778545152]
+
+[node name="Button" type="Button" parent="Node3D/CanvasLayer" unique_id=209181224]
+offset_left = 183.0
+offset_top = 95.0
+offset_right = 276.0
+offset_bottom = 132.0
+
+[node name="Node2D" type="Node2D" parent="." unique_id=427857261]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=609633900]
+position = Vector2(316, 263)
+texture = ExtResource("1_pq8q7")

@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="liminal-jam"
+run/main_scene="res://root.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*uid://cs8f0cvqu4ftq"
 
 [display]
 
@@ -28,3 +33,7 @@ window/stretch/aspect="expand"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[richer_text_label]
+
+fonts={}
