@@ -36,7 +36,7 @@ func _ready() -> void:
 
 var last_displacement: Vector2 = Vector2(0, 0)
 func _process(delta: float) -> void:
-	var shake: float = 0
+	var shake_amt: float = 0
 	var flash_white: float = 0
 
 	# push all the numbers into the effects
@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 
 		# !!! Apply the effects here. If you don't do this, the effects won't visually appear at all.
 		if eff.effect_name == "shake":
-			shake += value
+			shake_amt += value
 		elif eff.effect_name == "flash_white":
 			flash_white = max(flash_white, value)
 		else:
@@ -71,9 +71,10 @@ func _process(delta: float) -> void:
 	
 	# !!! apply all the effects
 	# Screen shake
-	var new_displacement: Vector2 = Vector2(randf_range(-shake,shake), randf_range(-shake,shake))
+	var new_displacement: Vector2 = Vector2(randf_range(-shake_amt,shake_amt), randf_range(-shake_amt,shake_amt))
 	global_position = global_position - last_displacement + new_displacement
 	last_displacement = new_displacement
 
 	# flash
-	flash_white_sprite.self_modulate.a = flash_white
+	if flash_white_sprite:
+		flash_white_sprite.self_modulate.a = flash_white

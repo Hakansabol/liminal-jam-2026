@@ -1,9 +1,53 @@
 [gd_scene format=3 uid="uid://b51s202dg0j17"]
 
 [ext_resource type="Texture2D" uid="uid://knpvax47befa" path="res://sprites/door_postproc.png" id="1_pq8q7"]
+[ext_resource type="Script" uid="uid://bht4yvawrx1ba" path="res://scripts/camera2D.gd" id="2_vvh5c"]
+[ext_resource type="Texture2D" uid="uid://ditijnreq6q4j" path="res://rmlibf_godot/sprites/rml_square_filled.svg" id="3_28aoi"]
+[ext_resource type="Shader" uid="uid://b47f34c4h51ix" path="res://rmlibf_godot/shaders/godot-crt-shader/crt_shader.gdshader" id="3_jnlp7"]
+[ext_resource type="FontFile" uid="uid://cidkrocobi022" path="res://sprites/InstrumentSerif-Regular.otf" id="3_vyht1"]
+[ext_resource type="Script" uid="uid://2f4fi75scxes" path="res://addons/richtext2/richer_text_label.gd" id="4_bf3um"]
+[ext_resource type="Script" uid="uid://bqwp81aplp01q" path="res://gameplay_manager.gd" id="4_qw60f"]
+[ext_resource type="Script" uid="uid://vyj7honaiwbx" path="res://addons/richtext2/text_effects/anims/rte_focus.gd" id="4_tw3kd"]
+[ext_resource type="Script" uid="uid://cwaje1igot1yi" path="res://scripts/dialogue.gd" id="5_gd4vy"]
+[ext_resource type="PackedScene" uid="uid://dad54oxke1fju" path="res://scenes/enc_button_fab.tscn" id="6_bf3um"]
+[ext_resource type="Script" uid="uid://mpdki47hps0u" path="res://scripts/encounters/enc_door.gd" id="6_qw60f"]
+[ext_resource type="AudioStream" uid="uid://c52sf4yasja2h" path="res://rmlibf_godot/sounds/hitding.ogg" id="7_eji0w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho56"]
 metallic_specular = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8gmwl"]
+shader = ExtResource("3_jnlp7")
+shader_parameter/overscan = 0.99199998052814
+shader_parameter/flicker_intensity = 0.05
+shader_parameter/flicker_speed = 2.0
+shader_parameter/flicker_randomness = 0.5
+shader_parameter/flicker_frequency = 8.0
+shader_parameter/glitch_frequency = 0.05
+shader_parameter/glitch_line_count = 3
+shader_parameter/glitch_line_duration_min = 0.2
+shader_parameter/glitch_line_duration_max = 0.8
+shader_parameter/glitch_line_delay_max = 0.5
+shader_parameter/glitch_line_intensity = 0.8
+shader_parameter/glitch_line_thickness = 0.003
+shader_parameter/rolling_distortion_speed = 0.1
+shader_parameter/rolling_distortion_amount = 0.02
+shader_parameter/rolling_distortion_width = 0.05
+shader_parameter/time_speed = 1.0
+shader_parameter/scanline_speed = 0.02
+shader_parameter/scanline_intensity = 0.15
+shader_parameter/scanline_count = 450.0
+shader_parameter/noise_amount = 0.08
+shader_parameter/distortion_strength = 0.04800000228
+shader_parameter/chromatic_aberration = 1.5
+shader_parameter/brightness = 1.1
+shader_parameter/contrast = 1.2
+shader_parameter/saturation = 1.1
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qw60f"]
+resource_name = "focus"
+script = ExtResource("4_tw3kd")
+metadata/rt = 16162633108894
 
 [node name="Node" type="Node" unique_id=1559354412]
 
@@ -29,6 +73,211 @@ offset_bottom = 132.0
 
 [node name="Node2D" type="Node2D" parent="." unique_id=427857261]
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=609633900]
-position = Vector2(316, 263)
+[node name="RmlCamera" type="Camera2D" parent="Node2D" unique_id=1242470836]
+script = ExtResource("2_vvh5c")
+metadata/_custom_type_script = "uid://bht4yvawrx1ba"
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/RmlCamera" unique_id=1666819296]
+visible = false
+z_index = 500
+material = SubResource("ShaderMaterial_8gmwl")
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/RmlCamera" unique_id=1296678826]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(500, 500)
+texture = ExtResource("3_28aoi")
+
+[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte")]
+script = ExtResource("4_qw60f")
+dialogue = NodePath("creepytoast")
+soundbyte = NodePath("AudioStreamPlayer2D")
+
+[node name="creepytoast" type="RichTextLabel" parent="Node2D/gameplay" unique_id=682635462 node_paths=PackedStringArray("soundbyte")]
+custom_minimum_size = Vector2(0, 45)
+offset_left = -297.0
+offset_top = 206.0
+offset_right = 303.0
+offset_bottom = 406.0
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+custom_effects = [SubResource("RichTextEffect_qw60f")]
+script = ExtResource("5_gd4vy")
+soundbyte = NodePath("../AudioStreamPlayer2D")
+animation = "focus"
+_forced_finish_delay = -0.040750666666881374
+animation = "focus"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = ""
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 32
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://cwaje1igot1yi"
+metadata/rand = Array[int]([5096276, 3655861624, 1777678514, 644871369, 302262020, 3636772445, 188908624, 3982246544, 1474019544, 1348612573, 1629014532, 1789431977, 653552982, 1681819698, 3432797317, 1898826033, 3674777008, 401807945, 559672919, 489357616, 3493996906, 1173967658, 1397520043, 2741653697, 202913474, 2708845309, 3044309762, 1350527031, 2031229777, 2419442741, 1583890492, 4269020126, 595840685, 2999270085, 1700598110, 1344015899, 2542314856, 3046341547, 4263754621, 3096636788, 1697327332, 3033901616, 4074013128, 2927612432, 1450421293, 4201128312, 2371706459, 4252279647, 4046344317, 21605878, 3067187247, 970449846, 90689116, 990245627, 4251833848, 3041741436, 441929440, 3389123512, 3653799014, 1545660546, 1881187390, 2727583380, 4221698862, 838061258, 854183920])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D/gameplay" unique_id=1066220048]
+stream = ExtResource("7_eji0w")
+volume_db = -12.38
+
+[node name="enc_door" type="Control" parent="Node2D/gameplay" unique_id=1052444266]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("6_qw60f")
+buttonfab = ExtResource("6_bf3um")
+
+[node name="sprite" type="TextureRect" parent="Node2D/gameplay/enc_door" unique_id=385055227]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_pq8q7")
+
+[node name="RicherTextLabel" type="RichTextLabel" parent="Node2D/gameplay/enc_door" unique_id=684841785]
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -500.0
+offset_right = 450.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
+theme_override_fonts/normal_font = ExtResource("3_vyht1")
+theme_override_fonts/bold_font = ExtResource("3_vyht1")
+theme_override_fonts/bold_italics_font = ExtResource("3_vyht1")
+theme_override_fonts/italics_font = ExtResource("3_vyht1")
+theme_override_fonts/mono_font = ExtResource("3_vyht1")
+theme_override_font_sizes/normal_font_size = 147
+theme_override_font_sizes/bold_font_size = 147
+theme_override_font_sizes/bold_italics_font_size = 147
+theme_override_font_sizes/italics_font_size = 147
+theme_override_font_sizes/mono_font_size = 147
+script = ExtResource("4_bf3um")
+bbcode = "A DOOR."
+effects = 2
+alignment = 1
+color = Color(1, 1, 0, 1)
+emoji_scale = 1.0
+font = "InstrumentSerif"
+font_auto_setup = false
+font_size = 147
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"

@@ -4,6 +4,8 @@ var camera: RmlCamera
 var player: Player
 var timer: SpeedrunTimer
 
+var gpm: GameplayManager
+
 #
 # HELPFUL FUNCTIONS TO CALL FROM ANYWHERE AT ANY TIME
 #

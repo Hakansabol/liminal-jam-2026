@@ -21,8 +21,13 @@ GameManager="*uid://cs8f0cvqu4ftq"
 
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/richtext2/plugin.cfg")
 
 [physics]
 
@@ -36,4 +41,6 @@ renderer/rendering_method.mobile="gl_compatibility"
 
 [richer_text_label]
 
-fonts={}
+fonts={
+&"InstrumentSerif": "res://sprites/InstrumentSerif-Italic.otf"
+}

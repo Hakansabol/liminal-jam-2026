@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dad54oxke1fju"]
+
+[ext_resource type="Script" uid="uid://r6ohlxdyikrc" path="res://scripts/encounter_button.gd" id="1_wbv7x"]
+
+[node name="Button2" type="Button" unique_id=76398554]
+offset_left = -551.0
+offset_top = -56.0
+offset_right = -251.0
+offset_bottom = 44.0
+text = "touch."
+script = ExtResource("1_wbv7x")
