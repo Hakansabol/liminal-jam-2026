@@ -6,14 +6,14 @@
 [ext_resource type="FontFile" uid="uid://cidkrocobi022" path="res://sprites/InstrumentSerif-Regular.otf" id="4_5yn7b"]
 [ext_resource type="Script" uid="uid://2f4fi75scxes" path="res://addons/richtext2/richer_text_label.gd" id="5_vimrm"]
 
-[sub_resource type="FontVariation" id="FontVariation_d7l2q"]
+[sub_resource type="FontVariation" id="FontVariation_ujivm"]
 variation_embolden = 1.5
 
-[sub_resource type="FontVariation" id="FontVariation_psuvm"]
+[sub_resource type="FontVariation" id="FontVariation_bkgl2"]
 variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_0i6lg"]
+[sub_resource type="FontVariation" id="FontVariation_v3p0a"]
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
@@ -24,6 +24,7 @@ script = ExtResource("1_ujivm")
 buttonfab = ExtResource("2_bkgl2")
 
 [node name="sprite" type="TextureRect" parent="." unique_id=1324892085]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,9 +57,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("4_5yn7b")
-theme_override_fonts/bold_font = SubResource("FontVariation_d7l2q")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_psuvm")
-theme_override_fonts/italics_font = SubResource("FontVariation_0i6lg")
+theme_override_fonts/bold_font = SubResource("FontVariation_ujivm")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_bkgl2")
+theme_override_fonts/italics_font = SubResource("FontVariation_v3p0a")
 theme_override_fonts/mono_font = ExtResource("4_5yn7b")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147

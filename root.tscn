@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dad54oxke1fju" path="res://scenes/enc_button_fab.tscn" id="6_bf3um"]
 [ext_resource type="PackedScene" uid="uid://napdh8oqlxt4" path="res://scripts/encounters/enc_door.tscn" id="6_qwhpj"]
 [ext_resource type="AudioStream" uid="uid://c52sf4yasja2h" path="res://rmlibf_godot/sounds/hitding.ogg" id="7_eji0w"]
+[ext_resource type="Texture2D" uid="uid://siamjcmuar4c" path="res://sprites/attack_indicator_only.png" id="9_50g4q"]
+[ext_resource type="Texture2D" uid="uid://os518lbww8jk" path="res://sprites/indicator_attacks.png" id="9_blcw0"]
 [ext_resource type="Script" uid="uid://cyclx0gvtgls5" path="res://scripts/encounters/enc_dog.gd" id="10_blcw0"]
 [ext_resource type="Script" uid="uid://yrugxxtj7fnb" path="res://scripts/encounters/enc_ball.gd" id="11_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://c7fsd5sj0fjkt" path="res://sprites/enc_dog_sprite.png" id="11_qt76e"]
@@ -16,34 +18,55 @@
 [ext_resource type="Texture2D" uid="uid://bjxb1ffdrk3h2" path="res://sprites/health_bar_outside.png" id="12_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://de5rmwn1nlj48" path="res://sprites/health_bar_over.png" id="13_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://cf6brfpiw18xk" path="res://sprites/health_bar_inside.png" id="14_sq7yr"]
+[ext_resource type="Texture2D" uid="uid://bxx3s8syavg2n" path="res://sprites/enc_cbt_shark.png" id="17_r3r3k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho56"]
 metallic_specular = 0.0
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_sq7yr"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_r3r3k"]
 resource_name = "focus"
 script = ExtResource("4_tw3kd")
-metadata/rt = 16162633108894
+metadata/rt = 1852708035604
 
-[sub_resource type="FontVariation" id="FontVariation_sq7yr"]
+[sub_resource type="FontVariation" id="FontVariation_blcw0"]
+base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 
-[sub_resource type="FontVariation" id="FontVariation_r3r3k"]
+[sub_resource type="FontVariation" id="FontVariation_50g4q"]
+base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_blcw0"]
+[sub_resource type="FontVariation" id="FontVariation_3dlgs"]
+base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_tw3kd"]
+[sub_resource type="FontVariation" id="FontVariation_vte5o"]
+base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 
-[sub_resource type="FontVariation" id="FontVariation_gd4vy"]
+[sub_resource type="FontVariation" id="FontVariation_po8fv"]
+base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_qw60f"]
+[sub_resource type="FontVariation" id="FontVariation_ub8w1"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = -0.25
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_ynlg5"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+
+[sub_resource type="FontVariation" id="FontVariation_ab83r"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_1xb4a"]
+base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
@@ -73,28 +96,37 @@ offset_bottom = 132.0
 
 [node name="RmlCamera" parent="Node2D" unique_id=1809508842 instance=ExtResource("1_tw3kd")]
 
-[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte", "health_bar")]
+[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte", "health_bar", "combat_hud", "cbt_enemy_time_slider", "cbt_player_time_slider", "cbt_player_damage_dial_left", "cbt_player_damage_dial_right")]
 script = ExtResource("4_qw60f")
 dialogue = NodePath("creepytoast")
 soundbyte = NodePath("AudioStreamPlayer2D")
-health_bar = NodePath("HSlider")
+health_bar = NodePath("healthbar")
+combat_hud = NodePath("combat")
+cbt_enemy_time_slider = NodePath("combat/enemy_damage2/enemy_damage")
+cbt_player_time_slider = NodePath("combat/player_damage/TextureProgressBar")
+cbt_player_damage_dial_left = NodePath("combat/player_damage/damage_increase_per")
+cbt_player_damage_dial_right = NodePath("combat/player_damage/damage_total")
 
 [node name="creepytoast" type="RichTextLabel" parent="Node2D/gameplay" unique_id=682635462 node_paths=PackedStringArray("soundbyte")]
 custom_minimum_size = Vector2(0, 45)
+clip_contents = false
 offset_left = -297.0
 offset_top = 206.0
 offset_right = 303.0
 offset_bottom = 406.0
+theme_override_colors/font_outline_color = Color(0.19999999, 0.19999999, 0.19999999, 1)
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
 theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
-custom_effects = [SubResource("RichTextEffect_sq7yr")]
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_r3r3k")]
 script = ExtResource("5_gd4vy")
 soundbyte = NodePath("../AudioStreamPlayer2D")
 animation = "focus"
-_forced_finish_delay = -0.040750666666881374
+_forced_finish_delay = -0.04075066666688137
 animation = "focus"
 default_wait_time = 1.0
 play_on_bbcode = true
@@ -165,7 +197,7 @@ metadata/rand = Array[int]([5096276, 3655861624, 1777678514, 644871369, 30226202
 stream = ExtResource("7_eji0w")
 volume_db = -12.38
 
-[node name="HSlider" type="TextureProgressBar" parent="Node2D/gameplay" unique_id=118680187]
+[node name="healthbar" type="TextureProgressBar" parent="Node2D/gameplay" unique_id=118680187]
 texture_filter = 1
 offset_left = -254.0
 offset_top = 28.0
@@ -179,6 +211,338 @@ texture_over = ExtResource("13_qwhpj")
 texture_progress = ExtResource("14_sq7yr")
 texture_progress_offset = Vector2(23, 221)
 
+[node name="combat" type="Control" parent="Node2D/gameplay" unique_id=1944892725]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="enemy_health_bar" type="TextureProgressBar" parent="Node2D/gameplay/combat" unique_id=646667214]
+layout_mode = 0
+offset_left = -197.0
+offset_top = -259.0
+offset_right = 52.999985
+offset_bottom = -199.0
+scale = Vector2(2, 2)
+value = 100.0
+texture_progress = ExtResource("14_sq7yr")
+
+[node name="enemy_hp" type="RichTextLabel" parent="Node2D/gameplay/combat/enemy_health_bar" unique_id=1612999671]
+custom_minimum_size = Vector2(0, 24)
+clip_contents = false
+layout_mode = 0
+offset_left = -41.499996
+offset_top = 0.49999762
+offset_right = -1.4999962
+offset_bottom = 40.499996
+theme_override_colors/font_outline_color = Color(0.19999999, 0.19999999, 0.19999999, 1)
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 17
+theme_override_font_sizes/bold_italics_font_size = 17
+theme_override_font_sizes/italics_font_size = 17
+theme_override_font_sizes/mono_font_size = 17
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("4_bf3um")
+bbcode = "300"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 17
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[node name="enemy_damage2" type="TextureRect" parent="Node2D/gameplay/combat" unique_id=1251714205]
+texture_filter = 1
+layout_mode = 0
+offset_left = -254.0
+offset_top = 163.0
+offset_right = -222.0
+offset_bottom = 195.0
+scale = Vector2(3, 3)
+texture = ExtResource("9_50g4q")
+
+[node name="enemy_damage" type="TextureProgressBar" parent="Node2D/gameplay/combat/enemy_damage2" unique_id=1137905821]
+layout_mode = 0
+offset_left = 37.666668
+offset_top = -0.33333588
+offset_right = 287.66666
+offset_bottom = 59.666664
+scale = Vector2(0.5, 1)
+value = 100.0
+texture_progress = ExtResource("14_sq7yr")
+
+[node name="enemy_damage_per" type="RichTextLabel" parent="Node2D/gameplay/combat/enemy_damage2" unique_id=2095202003]
+custom_minimum_size = Vector2(0, 24)
+clip_contents = false
+layout_mode = 0
+offset_left = -1.6666679
+offset_top = 4.3333335
+offset_right = 38.333332
+offset_bottom = 44.333332
+theme_override_colors/font_outline_color = Color(0.19999999, 0.19999999, 0.19999999, 1)
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 17
+theme_override_font_sizes/bold_italics_font_size = 17
+theme_override_font_sizes/italics_font_size = 17
+theme_override_font_sizes/mono_font_size = 17
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("4_bf3um")
+bbcode = "300"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 17
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[node name="player_damage" type="TextureRect" parent="Node2D/gameplay/combat" unique_id=678157286]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.000002
+offset_top = 351.0
+offset_right = 75.0
+offset_bottom = 383.0
+scale = Vector2(3, 3)
+texture = ExtResource("9_blcw0")
+
+[node name="atakk" type="Button" parent="Node2D/gameplay/combat/player_damage" unique_id=1598770632]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -35.333336
+offset_right = 76.0
+offset_bottom = -4.333336
+text = "atack"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Node2D/gameplay/combat/player_damage" unique_id=2130597217]
+layout_mode = 0
+offset_left = -72.666664
+offset_top = 6.333332
+offset_right = 177.33334
+offset_bottom = 66.33333
+scale = Vector2(0.3, 0.6)
+value = 100.0
+texture_progress = ExtResource("14_sq7yr")
+
+[node name="damage_increase_per" type="RichTextLabel" parent="Node2D/gameplay/combat/player_damage" unique_id=732770526]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 0
+offset_left = -5.0
+offset_top = 4.3333335
+offset_right = 35.0
+offset_bottom = 44.333332
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 17
+theme_override_font_sizes/bold_italics_font_size = 17
+theme_override_font_sizes/italics_font_size = 17
+theme_override_font_sizes/mono_font_size = 17
+script = ExtResource("4_bf3um")
+bbcode = "300"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 17
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[node name="damage_total" type="RichTextLabel" parent="Node2D/gameplay/combat/player_damage" unique_id=1036152317]
+custom_minimum_size = Vector2(0, 24)
+clip_contents = false
+layout_mode = 0
+offset_left = 29.333336
+offset_top = 4.3333335
+offset_right = 69.333336
+offset_bottom = 44.333332
+theme_override_colors/font_outline_color = Color(0.19999999, 0.19999999, 0.19999999, 1)
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 17
+theme_override_font_sizes/bold_italics_font_size = 17
+theme_override_font_sizes/italics_font_size = 17
+theme_override_font_sizes/mono_font_size = 17
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("4_bf3um")
+bbcode = "300"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 17
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
 [node name="enc_dog" type="Control" parent="Node2D/gameplay" unique_id=441058579]
 visible = false
 layout_mode = 3
@@ -187,6 +551,7 @@ script = ExtResource("10_blcw0")
 buttonfab = ExtResource("6_bf3um")
 
 [node name="sprite" type="TextureRect" parent="Node2D/gameplay/enc_dog" unique_id=35122876]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -219,9 +584,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_sq7yr")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_r3r3k")
-theme_override_fonts/italics_font = SubResource("FontVariation_blcw0")
+theme_override_fonts/bold_font = SubResource("FontVariation_blcw0")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_50g4q")
+theme_override_fonts/italics_font = SubResource("FontVariation_3dlgs")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
@@ -293,6 +658,7 @@ script = ExtResource("11_gd4vy")
 buttonfab = ExtResource("6_bf3um")
 
 [node name="sprite" type="TextureRect" parent="Node2D/gameplay/enc_ball" unique_id=152365752]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -325,9 +691,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_tw3kd")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_gd4vy")
-theme_override_fonts/italics_font = SubResource("FontVariation_qw60f")
+theme_override_fonts/bold_font = SubResource("FontVariation_vte5o")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_po8fv")
+theme_override_fonts/italics_font = SubResource("FontVariation_ub8w1")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
@@ -387,3 +753,108 @@ override_bbcodeEnabled = true
 override_clipContents = false
 override_fitContent = true
 metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[node name="enc_cbt_shark" type="Control" parent="Node2D/gameplay" unique_id=1242113320]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("11_gd4vy")
+buttonfab = ExtResource("6_bf3um")
+
+[node name="sprite" type="TextureRect" parent="Node2D/gameplay/enc_cbt_shark" unique_id=1178125994]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_r3r3k")
+
+[node name="RicherTextLabel" type="RichTextLabel" parent="Node2D/gameplay/enc_cbt_shark" unique_id=1117910898]
+custom_minimum_size = Vector2(0, 384)
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -750.0
+offset_top = -542.0
+offset_right = 750.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
+theme_override_fonts/normal_font = ExtResource("3_vyht1")
+theme_override_fonts/bold_font = SubResource("FontVariation_ynlg5")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ab83r")
+theme_override_fonts/italics_font = SubResource("FontVariation_1xb4a")
+theme_override_fonts/mono_font = ExtResource("3_vyht1")
+theme_override_font_sizes/normal_font_size = 147
+theme_override_font_sizes/bold_font_size = 147
+theme_override_font_sizes/bold_italics_font_size = 147
+theme_override_font_sizes/italics_font_size = 147
+theme_override_font_sizes/mono_font_size = 147
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("4_bf3um")
+bbcode = "A SHADOW SHARK."
+effects = 2
+alignment = 1
+color = Color(1, 1, 0, 1)
+emoji_scale = 1.0
+font = "InstrumentSerif"
+font_auto_setup = false
+font_size = 147
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[connection signal="pressed" from="Node2D/gameplay/combat/player_damage/atakk" to="Node2D/gameplay" method="player_attack"]

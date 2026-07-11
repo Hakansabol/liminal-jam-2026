@@ -30,7 +30,7 @@ func spawn_button(x:float,y:float, method: String, text: String = "")->EncButton
 	var n = buttonfab.instantiate() as EncButton
 	add_child(n)
 	n.global_position = Vector2(x, y) - n.size * 0.5
-	n.text = method if not text else text
+	(n.get_child(0) as RicherTextLabel).bbcode = method if not text else text
 	n.pressed.connect(func(): call(method)) # link function
 	return n
 
