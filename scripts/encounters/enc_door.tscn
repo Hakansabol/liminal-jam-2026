@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://napdh8oqlxt4"]
+
+[ext_resource type="Script" uid="uid://mpdki47hps0u" path="res://scripts/encounters/enc_door.gd" id="1_ujivm"]
+[ext_resource type="PackedScene" uid="uid://dad54oxke1fju" path="res://scenes/enc_button_fab.tscn" id="2_bkgl2"]
+[ext_resource type="Texture2D" uid="uid://knpvax47befa" path="res://sprites/door_postproc.png" id="3_v3p0a"]
+[ext_resource type="FontFile" uid="uid://cidkrocobi022" path="res://sprites/InstrumentSerif-Regular.otf" id="4_5yn7b"]
+[ext_resource type="Script" uid="uid://2f4fi75scxes" path="res://addons/richtext2/richer_text_label.gd" id="5_vimrm"]
+
+[sub_resource type="FontVariation" id="FontVariation_d7l2q"]
+variation_embolden = 1.5
+
+[sub_resource type="FontVariation" id="FontVariation_psuvm"]
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_0i6lg"]
+variation_embolden = -0.25
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[node name="enc_door" type="Control" unique_id=104275218]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ujivm")
+buttonfab = ExtResource("2_bkgl2")
+
+[node name="sprite" type="TextureRect" parent="." unique_id=1324892085]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_v3p0a")
+
+[node name="RicherTextLabel" type="RichTextLabel" parent="." unique_id=565634021]
+custom_minimum_size = Vector2(0, 192)
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -500.0
+offset_right = 450.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
+theme_override_fonts/normal_font = ExtResource("4_5yn7b")
+theme_override_fonts/bold_font = SubResource("FontVariation_d7l2q")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_psuvm")
+theme_override_fonts/italics_font = SubResource("FontVariation_0i6lg")
+theme_override_fonts/mono_font = ExtResource("4_5yn7b")
+theme_override_font_sizes/normal_font_size = 147
+theme_override_font_sizes/bold_font_size = 147
+theme_override_font_sizes/bold_italics_font_size = 147
+theme_override_font_sizes/italics_font_size = 147
+theme_override_font_sizes/mono_font_size = 147
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("5_vimrm")
+bbcode = "A DOOR."
+effects = 2
+alignment = 1
+color = Color(1, 1, 0, 1)
+emoji_scale = 1.0
+font = "InstrumentSerif"
+font_auto_setup = false
+font_size = 147
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"

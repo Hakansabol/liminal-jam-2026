@@ -7,5 +7,6 @@ offset_left = -551.0
 offset_top = -56.0
 offset_right = -251.0
 offset_bottom = 44.0
+theme_override_font_sizes/font_size = 32
 text = "touch."
 script = ExtResource("1_wbv7x")
