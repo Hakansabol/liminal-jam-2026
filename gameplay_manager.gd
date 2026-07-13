@@ -13,6 +13,7 @@ func _init() -> void:
 	GameManager.gpm = self
 
 func _ready() -> void:
+	end_combat()
 	for a in encounters:
 		a.visible = false
 	play_game()
@@ -82,10 +83,14 @@ func _physics_process(delta: float) -> void:
 @export var cbt_player_damage_dial_left: RicherTextLabel
 @export var cbt_player_damage_dial_right: RicherTextLabel
 var enemy: Encounter = null
-var enemy_max_health = 0
+var enemy_max_health = 300
 var enemy_health = 0
 func start_combat():
 	combat_hud.visible = true
+	player_damage_ticks = 0
+	player_damage_value = 0
+	enemy_damage_ticks = 0
+	set_enemy_health(enemy_max_health)
 func end_combat():
 	combat_hud.visible = false
 var player_damage_ticks : int = 0 # decreases then resets
@@ -111,9 +116,14 @@ func combat_tick():
 	# player attacks hud
 	cbt_player_damage_dial_left.bbcode = str(player_damage_value_per)
 	cbt_player_damage_dial_right.bbcode = str(player_damage_value)
-
 	
 func player_attack():
 	print("attacked for " + str(player_damage_value) + " damage")
+	set_enemy_health(enemy_health - player_damage_value)
 	player_damage_value = 0
 	pass
+
+func set_enemy_health(n: int):
+	enemy_health = n
+	cbt_enemy_health_bar.value = ((enemy_health as float) / (enemy_max_health as float)) * cbt_enemy_health_bar.max_value
+	cbt_enemy_health_value.bbcode = str(enemy_health)

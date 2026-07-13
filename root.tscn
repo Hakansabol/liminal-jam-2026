@@ -23,49 +23,49 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho56"]
 metallic_specular = 0.0
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_r3r3k"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_50g4q"]
 resource_name = "focus"
 script = ExtResource("4_tw3kd")
-metadata/rt = 1852708035604
-
-[sub_resource type="FontVariation" id="FontVariation_blcw0"]
-base_font = ExtResource("3_vyht1")
-variation_embolden = 1.5
-
-[sub_resource type="FontVariation" id="FontVariation_50g4q"]
-base_font = ExtResource("3_vyht1")
-variation_embolden = 1.5
-variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+metadata/rt = 1663125493661
 
 [sub_resource type="FontVariation" id="FontVariation_3dlgs"]
 base_font = ExtResource("3_vyht1")
-variation_embolden = -0.25
-variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+variation_embolden = 1.5
 
 [sub_resource type="FontVariation" id="FontVariation_vte5o"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
-
-[sub_resource type="FontVariation" id="FontVariation_po8fv"]
-base_font = ExtResource("3_vyht1")
-variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_ub8w1"]
+[sub_resource type="FontVariation" id="FontVariation_po8fv"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_ynlg5"]
+[sub_resource type="FontVariation" id="FontVariation_ub8w1"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 
-[sub_resource type="FontVariation" id="FontVariation_ab83r"]
+[sub_resource type="FontVariation" id="FontVariation_ynlg5"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
+[sub_resource type="FontVariation" id="FontVariation_ab83r"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = -0.25
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
 [sub_resource type="FontVariation" id="FontVariation_1xb4a"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+
+[sub_resource type="FontVariation" id="FontVariation_0dnjj"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_uwexw"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
@@ -96,13 +96,16 @@ offset_bottom = 132.0
 
 [node name="RmlCamera" parent="Node2D" unique_id=1809508842 instance=ExtResource("1_tw3kd")]
 
-[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte", "health_bar", "combat_hud", "cbt_enemy_time_slider", "cbt_player_time_slider", "cbt_player_damage_dial_left", "cbt_player_damage_dial_right")]
+[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte", "health_bar", "combat_hud", "cbt_enemy_time_slider", "cbt_enemy_damage_dial", "cbt_enemy_health_value", "cbt_enemy_health_bar", "cbt_player_time_slider", "cbt_player_damage_dial_left", "cbt_player_damage_dial_right")]
 script = ExtResource("4_qw60f")
 dialogue = NodePath("creepytoast")
 soundbyte = NodePath("AudioStreamPlayer2D")
 health_bar = NodePath("healthbar")
 combat_hud = NodePath("combat")
 cbt_enemy_time_slider = NodePath("combat/enemy_damage2/enemy_damage")
+cbt_enemy_damage_dial = NodePath("combat/enemy_damage2/enemy_damage_per")
+cbt_enemy_health_value = NodePath("combat/enemy_health_bar/enemy_hp")
+cbt_enemy_health_bar = NodePath("combat/enemy_health_bar")
 cbt_player_time_slider = NodePath("combat/player_damage/TextureProgressBar")
 cbt_player_damage_dial_left = NodePath("combat/player_damage/damage_increase_per")
 cbt_player_damage_dial_right = NodePath("combat/player_damage/damage_total")
@@ -122,7 +125,7 @@ theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_r3r3k")]
+custom_effects = [SubResource("RichTextEffect_50g4q")]
 script = ExtResource("5_gd4vy")
 soundbyte = NodePath("../AudioStreamPlayer2D")
 animation = "focus"
@@ -413,16 +416,20 @@ texture_progress = ExtResource("14_sq7yr")
 
 [node name="damage_increase_per" type="RichTextLabel" parent="Node2D/gameplay/combat/player_damage" unique_id=732770526]
 custom_minimum_size = Vector2(0, 24)
+clip_contents = false
 layout_mode = 0
 offset_left = -5.0
 offset_top = 4.3333335
 offset_right = 35.0
 offset_bottom = 44.333332
+theme_override_colors/font_outline_color = Color(0.19999999, 0.19999999, 0.19999999, 1)
 theme_override_font_sizes/normal_font_size = 17
 theme_override_font_sizes/bold_font_size = 17
 theme_override_font_sizes/bold_italics_font_size = 17
 theme_override_font_sizes/italics_font_size = 17
 theme_override_font_sizes/mono_font_size = 17
+bbcode_enabled = true
+fit_content = true
 script = ExtResource("4_bf3um")
 bbcode = "300"
 effects = 2
@@ -584,9 +591,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_blcw0")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_50g4q")
-theme_override_fonts/italics_font = SubResource("FontVariation_3dlgs")
+theme_override_fonts/bold_font = SubResource("FontVariation_3dlgs")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_vte5o")
+theme_override_fonts/italics_font = SubResource("FontVariation_po8fv")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
@@ -691,9 +698,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_vte5o")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_po8fv")
-theme_override_fonts/italics_font = SubResource("FontVariation_ub8w1")
+theme_override_fonts/bold_font = SubResource("FontVariation_ub8w1")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ynlg5")
+theme_override_fonts/italics_font = SubResource("FontVariation_ab83r")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
@@ -777,7 +784,7 @@ grow_vertical = 2
 texture = ExtResource("17_r3r3k")
 
 [node name="RicherTextLabel" type="RichTextLabel" parent="Node2D/gameplay/enc_cbt_shark" unique_id=1117910898]
-custom_minimum_size = Vector2(0, 384)
+custom_minimum_size = Vector2(0, 192)
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -794,9 +801,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_ynlg5")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ab83r")
-theme_override_fonts/italics_font = SubResource("FontVariation_1xb4a")
+theme_override_fonts/bold_font = SubResource("FontVariation_1xb4a")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_0dnjj")
+theme_override_fonts/italics_font = SubResource("FontVariation_uwexw")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
