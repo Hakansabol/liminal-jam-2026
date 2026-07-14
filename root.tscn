@@ -19,53 +19,54 @@
 [ext_resource type="Texture2D" uid="uid://de5rmwn1nlj48" path="res://sprites/health_bar_over.png" id="13_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://cf6brfpiw18xk" path="res://sprites/health_bar_inside.png" id="14_sq7yr"]
 [ext_resource type="Texture2D" uid="uid://bxx3s8syavg2n" path="res://sprites/enc_cbt_shark.png" id="17_r3r3k"]
+[ext_resource type="Script" uid="uid://y58jc6kbig3t" path="res://scripts/enc_cbt_shark.gd" id="19_3dlgs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho56"]
 metallic_specular = 0.0
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_50g4q"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_vte5o"]
 resource_name = "focus"
 script = ExtResource("4_tw3kd")
-metadata/rt = 1663125493661
-
-[sub_resource type="FontVariation" id="FontVariation_3dlgs"]
-base_font = ExtResource("3_vyht1")
-variation_embolden = 1.5
-
-[sub_resource type="FontVariation" id="FontVariation_vte5o"]
-base_font = ExtResource("3_vyht1")
-variation_embolden = 1.5
-variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+metadata/rt = 1920907424684
 
 [sub_resource type="FontVariation" id="FontVariation_po8fv"]
 base_font = ExtResource("3_vyht1")
-variation_embolden = -0.25
-variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+variation_embolden = 1.5
 
 [sub_resource type="FontVariation" id="FontVariation_ub8w1"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
-
-[sub_resource type="FontVariation" id="FontVariation_ynlg5"]
-base_font = ExtResource("3_vyht1")
-variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_ab83r"]
+[sub_resource type="FontVariation" id="FontVariation_ynlg5"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
-[sub_resource type="FontVariation" id="FontVariation_1xb4a"]
+[sub_resource type="FontVariation" id="FontVariation_ab83r"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 
-[sub_resource type="FontVariation" id="FontVariation_0dnjj"]
+[sub_resource type="FontVariation" id="FontVariation_1xb4a"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
+[sub_resource type="FontVariation" id="FontVariation_0dnjj"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = -0.25
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
 [sub_resource type="FontVariation" id="FontVariation_uwexw"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+
+[sub_resource type="FontVariation" id="FontVariation_8pgb7"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_tilu5"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
@@ -125,7 +126,7 @@ theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_50g4q")]
+custom_effects = [SubResource("RichTextEffect_vte5o")]
 script = ExtResource("5_gd4vy")
 soundbyte = NodePath("../AudioStreamPlayer2D")
 animation = "focus"
@@ -591,9 +592,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_3dlgs")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_vte5o")
-theme_override_fonts/italics_font = SubResource("FontVariation_po8fv")
+theme_override_fonts/bold_font = SubResource("FontVariation_po8fv")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_ub8w1")
+theme_override_fonts/italics_font = SubResource("FontVariation_ynlg5")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
@@ -698,9 +699,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_ub8w1")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_ynlg5")
-theme_override_fonts/italics_font = SubResource("FontVariation_ab83r")
+theme_override_fonts/bold_font = SubResource("FontVariation_ab83r")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_1xb4a")
+theme_override_fonts/italics_font = SubResource("FontVariation_0dnjj")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147
@@ -764,7 +765,7 @@ metadata/_custom_type_script = "uid://2f4fi75scxes"
 [node name="enc_cbt_shark" type="Control" parent="Node2D/gameplay" unique_id=1242113320]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("11_gd4vy")
+script = ExtResource("19_3dlgs")
 buttonfab = ExtResource("6_bf3um")
 
 [node name="sprite" type="TextureRect" parent="Node2D/gameplay/enc_cbt_shark" unique_id=1178125994]
@@ -801,9 +802,9 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
 theme_override_fonts/normal_font = ExtResource("3_vyht1")
-theme_override_fonts/bold_font = SubResource("FontVariation_1xb4a")
-theme_override_fonts/bold_italics_font = SubResource("FontVariation_0dnjj")
-theme_override_fonts/italics_font = SubResource("FontVariation_uwexw")
+theme_override_fonts/bold_font = SubResource("FontVariation_uwexw")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_8pgb7")
+theme_override_fonts/italics_font = SubResource("FontVariation_tilu5")
 theme_override_fonts/mono_font = ExtResource("3_vyht1")
 theme_override_font_sizes/normal_font_size = 147
 theme_override_font_sizes/bold_font_size = 147

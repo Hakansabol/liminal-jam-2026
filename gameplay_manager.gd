@@ -103,8 +103,12 @@ var enemy_damage_ticks_needed : int = 60
 var ENEMY_DAMAGE_VALUE : int = 3
 
 func combat_tick():
+	if not combat_hud.visible:
+		return
+
 	enemy_damage_ticks -= 1
 	if enemy_damage_ticks <= 0:
+		enemy_attack()
 		enemy_damage_ticks = enemy_damage_ticks_needed
 	cbt_enemy_time_slider.value = (1 - (enemy_damage_ticks as float) / (enemy_damage_ticks_needed as float)) * 100
 
@@ -113,15 +117,19 @@ func combat_tick():
 		player_damage_ticks = player_damage_ticks_needed
 		player_damage_value += player_damage_value_per
 	cbt_player_time_slider.value = (1 - (player_damage_ticks as float) / (player_damage_ticks_needed as float)) * 100
+	
 	# player attacks hud
 	cbt_player_damage_dial_left.bbcode = str(player_damage_value_per)
 	cbt_player_damage_dial_right.bbcode = str(player_damage_value)
+	cbt_enemy_damage_dial.bbcode = str(ENEMY_DAMAGE_VALUE)
 	
 func player_attack():
 	print("attacked for " + str(player_damage_value) + " damage")
 	set_enemy_health(enemy_health - player_damage_value)
 	player_damage_value = 0
-	pass
+
+func enemy_attack():
+	set_player_hp(player_hp - ENEMY_DAMAGE_VALUE)
 
 func set_enemy_health(n: int):
 	enemy_health = n

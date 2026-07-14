@@ -22,6 +22,7 @@ func _ready() -> void:
 ## called by GPM when the encounter shows up on screen
 ## set up the buttons to press and/or the combat
 func _on_encounter() -> void:
+	print("an abstract method _on_encounter was called!")
 	pass
 
 ## spawns a generic button at the position specified with the text specified.

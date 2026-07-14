@@ -42,5 +42,5 @@ renderer/rendering_method.mobile="gl_compatibility"
 [richer_text_label]
 
 fonts={
-&"InstrumentSerif": "res://sprites/InstrumentSerif-Italic.otf"
+&"InstrumentSerif": "res://sprites/InstrumentSerif-Regular.otf"
 }
