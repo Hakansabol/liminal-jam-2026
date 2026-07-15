@@ -82,21 +82,26 @@ func _physics_process(delta: float) -> void:
 @export var cbt_player_time_slider: TextureProgressBar
 @export var cbt_player_damage_dial_left: RicherTextLabel
 @export var cbt_player_damage_dial_right: RicherTextLabel
-var enemy: Encounter = null
+var enemy: EncounterCombat = null
 var enemy_max_health = 300
 var enemy_health = 0
-func start_combat():
+func start_combat(src: EncounterCombat):
+	enemy = src
 	combat_hud.visible = true
-	player_damage_ticks = 0
+	player_damage_ticks = player_damage_ticks_needed
 	player_damage_value = 0
-	enemy_damage_ticks = 0
+	enemy_damage_ticks = enemy_damage_ticks_needed
 	set_enemy_health(enemy_max_health)
 func end_combat():
 	combat_hud.visible = false
+	if enemy:
+		enemy._on_end_combat()
 var player_damage_ticks : int = 0 # decreases then resets
 var player_damage_ticks_needed : int = 30
-var player_damage_value_per : int = 5 # decreases over time
+var player_damage_value_per : int = 10 # decreases over time
 var player_damage_value : int = 0 # increases over time
+func getpdvp() -> int:
+	return maxi(player_damage_value_per - (player_damage_value / 50), 0)
 
 var enemy_damage_ticks : int = 0 # decreases then resets
 var enemy_damage_ticks_needed : int = 60
@@ -115,11 +120,11 @@ func combat_tick():
 	player_damage_ticks -= 1
 	if player_damage_ticks <= 0:
 		player_damage_ticks = player_damage_ticks_needed
-		player_damage_value += player_damage_value_per
+		player_damage_value += getpdvp()
 	cbt_player_time_slider.value = (1 - (player_damage_ticks as float) / (player_damage_ticks_needed as float)) * 100
 	
 	# player attacks hud
-	cbt_player_damage_dial_left.bbcode = str(player_damage_value_per)
+	cbt_player_damage_dial_left.bbcode = str(getpdvp())
 	cbt_player_damage_dial_right.bbcode = str(player_damage_value)
 	cbt_enemy_damage_dial.bbcode = str(ENEMY_DAMAGE_VALUE)
 	
@@ -135,3 +140,6 @@ func set_enemy_health(n: int):
 	enemy_health = n
 	cbt_enemy_health_bar.value = ((enemy_health as float) / (enemy_max_health as float)) * cbt_enemy_health_bar.max_value
 	cbt_enemy_health_value.bbcode = str(enemy_health)
+
+	if enemy_health < 0:
+		end_combat()

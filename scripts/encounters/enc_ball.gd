@@ -20,6 +20,7 @@ func touch():
 
 func eat():
 	cull_children()
-	await GameManager.gpm.simple_dialogue("you consumed the door in a single bite.[w] what are you?", 0.04)
+	await GameManager.gpm.simple_dialogue("The ball was actually cake! You restored 50 health.", 0.04)
+	GameManager.gpm.set_player_hp(GameManager.gpm.player_hp + 50)
 	
 	spawn_button(00,400,"gonext", "Continue")

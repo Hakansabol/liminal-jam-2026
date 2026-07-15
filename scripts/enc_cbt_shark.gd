@@ -14,4 +14,14 @@ func _on_encounter() -> void:
 	cull_list.append(b1)
 
 func kill() -> void:
-	GameManager.gpm.start_combat()
+	cull_children()
+	var gpm = GameManager.gpm
+	gpm.enemy_max_health = 173
+	gpm.enemy_damage_ticks_needed = 180
+	gpm.ENEMY_DAMAGE_VALUE = 23
+	gpm.start_combat(self)
+
+
+func _on_end_combat() -> void:
+	var b1 = spawn_button(00,400,"gonext", "Continue")
+	cull_list.append(b1)
