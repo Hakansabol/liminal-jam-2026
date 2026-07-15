@@ -59,15 +59,20 @@ func set_player_max_hp(amt: int):
 	if amt > prev:
 		set_player_hp(player_hp + (amt - prev)) # heal when gaining maxhp
 	player_hp = clampi(player_hp, 0, player_max_hp) # reclamp hp when losing maxhp.
+	update_player_hp_bar()
 ## set player hp
 ## clamped. If set to zero, you die.
 ## also updates the health bar
 func set_player_hp(amt: int):
 	player_hp = clampi(amt, 0, player_max_hp)
-	var rtio = (player_hp as float) / (player_max_hp as float)
-	health_bar.value = rtio * health_bar.max_value
+	update_player_hp_bar()
 	if amt <= 0:
 		die()
+func update_player_hp_bar():
+	var rtio = (player_hp as float) / (player_max_hp as float)
+	health_bar.value = rtio * health_bar.max_value
+	cbt_player_hp_dial_current.bbcode = str(player_hp)
+	cbt_player_hp_dial_max.bbcode = str(player_max_hp)
 func die():
 	print("YOU DIE")
 
@@ -82,6 +87,9 @@ func _physics_process(delta: float) -> void:
 @export var cbt_player_time_slider: TextureProgressBar
 @export var cbt_player_damage_dial_left: RicherTextLabel
 @export var cbt_player_damage_dial_right: RicherTextLabel
+@export var cbt_player_hp_dial_current: RicherTextLabel
+@export var cbt_player_hp_dial_max: RicherTextLabel
+
 var enemy: EncounterCombat = null
 var enemy_max_health = 300
 var enemy_health = 0

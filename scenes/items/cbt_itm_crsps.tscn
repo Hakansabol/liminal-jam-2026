@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bngkndrg60osp"]
+
+[ext_resource type="Texture2D" uid="uid://dgjwcf8hkky27" path="res://rmlibf_godot/sprites/crisps/Crisps00.png" id="1_etm4t"]
+[ext_resource type="Script" uid="uid://bn4ldunvyo4pk" path="res://item_script.gd" id="2_o0156"]
+
+[node name="cbt_itm_crsps" type="Button" unique_id=1701456254]
+custom_minimum_size = Vector2(110, 110)
+tooltip_text = "CRSPS
+A bag of chips.
+Gain 5 Max HP after each combat.
+Consume: Gain Max HP equal to your missing hp, without healing."
+icon = ExtResource("1_etm4t")
+expand_icon = true
+script = ExtResource("2_o0156")
+id = 0

@@ -20,7 +20,8 @@ func touch():
 
 func eat():
 	cull_children()
-	await GameManager.gpm.simple_dialogue("The ball was actually cake! You restored 50 health.", 0.04)
-	GameManager.gpm.set_player_hp(GameManager.gpm.player_hp + 50)
+	var hpq : int = GameManager.gpm.player_max_hp * 0.3
+	await GameManager.gpm.simple_dialogue("The ball was actually cake! You restored " + str(hpq) + " health.", 0.04)
+	GameManager.gpm.set_player_hp(GameManager.gpm.player_hp + hpq)
 	
 	spawn_button(00,400,"gonext", "Continue")

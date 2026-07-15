@@ -5,6 +5,7 @@ var player: Player
 var timer: SpeedrunTimer
 
 var gpm: GameplayManager
+var iman: ItemsManager
 
 #
 # HELPFUL FUNCTIONS TO CALL FROM ANYWHERE AT ANY TIME

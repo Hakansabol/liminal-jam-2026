@@ -14,11 +14,15 @@
 [ext_resource type="Script" uid="uid://cyclx0gvtgls5" path="res://scripts/encounters/enc_dog.gd" id="10_blcw0"]
 [ext_resource type="Script" uid="uid://yrugxxtj7fnb" path="res://scripts/encounters/enc_ball.gd" id="11_gd4vy"]
 [ext_resource type="Texture2D" uid="uid://c7fsd5sj0fjkt" path="res://sprites/enc_dog_sprite.png" id="11_qt76e"]
+[ext_resource type="Script" uid="uid://c12oymk3ahrc1" path="res://ItemsManager.gd" id="12_po8fv"]
 [ext_resource type="Texture2D" uid="uid://70gbqx5y5e8y" path="res://sprites/enc_ball_sprite.png" id="12_qt76e"]
 [ext_resource type="Texture2D" uid="uid://bjxb1ffdrk3h2" path="res://sprites/health_bar_outside.png" id="12_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://de5rmwn1nlj48" path="res://sprites/health_bar_over.png" id="13_qwhpj"]
+[ext_resource type="PackedScene" uid="uid://bngkndrg60osp" path="res://scenes/items/cbt_itm_crsps.tscn" id="13_ub8w1"]
+[ext_resource type="Texture2D" uid="uid://dgjwcf8hkky27" path="res://rmlibf_godot/sprites/crisps/Crisps00.png" id="13_ynlg5"]
 [ext_resource type="Texture2D" uid="uid://cf6brfpiw18xk" path="res://sprites/health_bar_inside.png" id="14_sq7yr"]
 [ext_resource type="Texture2D" uid="uid://bxx3s8syavg2n" path="res://sprites/enc_cbt_shark.png" id="17_r3r3k"]
+[ext_resource type="Script" uid="uid://dxfem6rvsdryo" path="res://scripts/encounters/enc_crsps.gd" id="19_1xb4a"]
 [ext_resource type="Script" uid="uid://y58jc6kbig3t" path="res://scripts/enc_cbt_shark.gd" id="19_3dlgs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vho56"]
@@ -39,6 +43,20 @@ variation_embolden = 1.5
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 
 [sub_resource type="FontVariation" id="FontVariation_ub8w1"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = -0.25
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_tilu5"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+
+[sub_resource type="FontVariation" id="FontVariation_24xe2"]
+base_font = ExtResource("3_vyht1")
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_cj3xu"]
 base_font = ExtResource("3_vyht1")
 variation_embolden = -0.25
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
@@ -97,7 +115,7 @@ offset_bottom = 132.0
 
 [node name="RmlCamera" parent="Node2D" unique_id=1809508842 instance=ExtResource("1_tw3kd")]
 
-[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte", "health_bar", "combat_hud", "cbt_enemy_time_slider", "cbt_enemy_damage_dial", "cbt_enemy_health_value", "cbt_enemy_health_bar", "cbt_player_time_slider", "cbt_player_damage_dial_left", "cbt_player_damage_dial_right")]
+[node name="gameplay" type="Node" parent="Node2D" unique_id=1798835155 node_paths=PackedStringArray("dialogue", "soundbyte", "health_bar", "combat_hud", "cbt_enemy_time_slider", "cbt_enemy_damage_dial", "cbt_enemy_health_value", "cbt_enemy_health_bar", "cbt_player_time_slider", "cbt_player_damage_dial_left", "cbt_player_damage_dial_right", "cbt_player_hp_dial_current", "cbt_player_hp_dial_max")]
 script = ExtResource("4_qw60f")
 dialogue = NodePath("creepytoast")
 soundbyte = NodePath("AudioStreamPlayer2D")
@@ -110,6 +128,8 @@ cbt_enemy_health_bar = NodePath("combat/enemy_health_bar")
 cbt_player_time_slider = NodePath("combat/player_damage/TextureProgressBar")
 cbt_player_damage_dial_left = NodePath("combat/player_damage/damage_increase_per")
 cbt_player_damage_dial_right = NodePath("combat/player_damage/damage_total")
+cbt_player_hp_dial_current = NodePath("healthbar/player_current_hp")
+cbt_player_hp_dial_max = NodePath("healthbar/player_total_hp")
 
 [node name="creepytoast" type="RichTextLabel" parent="Node2D/gameplay" unique_id=682635462 node_paths=PackedStringArray("soundbyte")]
 custom_minimum_size = Vector2(0, 45)
@@ -214,6 +234,133 @@ texture_under = ExtResource("12_qwhpj")
 texture_over = ExtResource("13_qwhpj")
 texture_progress = ExtResource("14_sq7yr")
 texture_progress_offset = Vector2(23, 221)
+
+[node name="player_current_hp" type="RichTextLabel" parent="Node2D/gameplay/healthbar" unique_id=903757565]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 0
+offset_left = -35.5
+offset_top = 215.5
+offset_right = 4.5
+offset_bottom = 255.5
+script = ExtResource("4_bf3um")
+bbcode = "50"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[node name="player_total_hp" type="RichTextLabel" parent="Node2D/gameplay/healthbar" unique_id=1722061112]
+custom_minimum_size = Vector2(0, 23)
+clip_contents = false
+layout_mode = 0
+offset_left = 262.0
+offset_top = 226.5
+offset_right = 302.0
+offset_bottom = 266.5
+theme_override_colors/font_outline_color = Color(0.19999999, 0.19999999, 0.19999999, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("4_bf3um")
+bbcode = "100"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
 
 [node name="combat" type="Control" parent="Node2D/gameplay" unique_id=1944892725]
 layout_mode = 3
@@ -558,12 +705,19 @@ override_clipContents = false
 override_fitContent = true
 metadata/_custom_type_script = "uid://2f4fi75scxes"
 
-[node name="GridContainer" type="GridContainer" parent="Node2D/gameplay/combat" unique_id=1585826114]
-layout_mode = 0
-offset_left = -916.0
-offset_top = -14.0
-offset_right = -876.0
-offset_bottom = 26.0
+[node name="items" type="GridContainer" parent="Node2D/gameplay" unique_id=1585826114]
+offset_left = -910.0
+offset_top = -33.0
+offset_right = -560.0
+offset_bottom = 437.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+script = ExtResource("12_po8fv")
+item_prefabs = Array[PackedScene]([ExtResource("13_ub8w1")])
+
+[node name="cbt_itm_crsps" parent="Node2D/gameplay/items" unique_id=1701456254 instance=ExtResource("13_ub8w1")]
+layout_mode = 2
 
 [node name="enc_dog" type="Control" parent="Node2D/gameplay" unique_id=441058579]
 visible = false
@@ -619,6 +773,110 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("4_bf3um")
 bbcode = "dog."
+effects = 2
+alignment = 1
+color = Color(1, 1, 0, 1)
+emoji_scale = 1.0
+font = "InstrumentSerif"
+font_auto_setup = false
+font_size = 147
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+
+[node name="enc_crsps" type="Control" parent="Node2D/gameplay" unique_id=1225250672]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("19_1xb4a")
+buttonfab = ExtResource("6_bf3um")
+
+[node name="sprite" type="TextureRect" parent="Node2D/gameplay/enc_crsps" unique_id=963053648]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_ynlg5")
+
+[node name="RicherTextLabel" type="RichTextLabel" parent="Node2D/gameplay/enc_crsps" unique_id=1616382431]
+custom_minimum_size = Vector2(0, 192)
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -500.0
+offset_right = 450.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2076723, 0.19532436, 0.0038684532, 1)
+theme_override_fonts/normal_font = ExtResource("3_vyht1")
+theme_override_fonts/bold_font = SubResource("FontVariation_tilu5")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_24xe2")
+theme_override_fonts/italics_font = SubResource("FontVariation_cj3xu")
+theme_override_fonts/mono_font = ExtResource("3_vyht1")
+theme_override_font_sizes/normal_font_size = 147
+theme_override_font_sizes/bold_font_size = 147
+theme_override_font_sizes/bold_italics_font_size = 147
+theme_override_font_sizes/italics_font_size = 147
+theme_override_font_sizes/mono_font_size = 147
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("4_bf3um")
+bbcode = "CHIP BAG."
 effects = 2
 alignment = 1
 color = Color(1, 1, 0, 1)
